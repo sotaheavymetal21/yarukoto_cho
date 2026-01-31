@@ -77,11 +77,14 @@ group :development, :test do
 
   # Testing
   gem "rspec-rails", "~> 6.1"
+  gem "rspec_junit_formatter"
   gem "factory_bot_rails", "~> 6.4"
   gem "faker", "~> 3.2"
   gem "capybara", "~> 3.39"
   gem "selenium-webdriver"
   gem "shoulda-matchers", "~> 6.0"
+  gem "simplecov", require: false
+  gem "database_cleaner-active_record"
 end
 
 group :development do
