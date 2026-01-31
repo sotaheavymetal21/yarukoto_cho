@@ -37,3 +37,79 @@ jobs:
       - name: Lint code for consistent style
         run: bin/rubocop -f github
 
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: yarukoto_cho_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+      redis:
+        image: redis:7
+        ports:
+          - 6379:6379
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      RAILS_ENV: test
+      DATABASE_URL: postgres://postgres:postgres@localhost:5432/yarukoto_cho_test
+      REDIS_URL: redis://localhost:6379/0
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.node-version'
+          cache: 'npm'
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Build assets
+        run: npm run build && npm run build:css
+
+      - name: Setup database
+        run: bin/rails db:schema:load
+
+      - name: Run tests
+        run: bundle exec rspec --format progress --format RspecJunitFormatter --out tmp/rspec_results.xml
+        env:
+          COVERAGE: true
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: tmp/rspec_results.xml
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage
+          path: coverage/
