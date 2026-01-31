@@ -37,7 +37,7 @@ gem "bootsnap", require: false
 gem "image_processing", "~> 1.2"
 
 # Authentication
-gem "devise", "~> 4.9"
+gem "devise", "~> 5.0"
 gem "omniauth", "~> 2.1"
 gem "omniauth-google-oauth2"
 gem "omniauth-github"
