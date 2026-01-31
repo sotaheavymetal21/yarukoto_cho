@@ -1,0 +1,76 @@
+<% content_for(:title) { "Dashboard - Yarukoto Cho" } %>
+
+<main class="min-h-screen bg-gray-50">
+  <nav class="bg-white shadow">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center">
+          <span class="text-xl font-bold text-indigo-600">Yarukoto Cho</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="text-gray-600"><%= current_user.name %></span>
+          <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "px-4 py-2 text-sm text-gray-600 hover:text-gray-900" %>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mx-auto px-4 py-8">
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-gray-900">Welcome back, <%= current_user.name %>!</h1>
+      <p class="text-gray-600 mt-2">Here's your dashboard overview.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-8">
+      <div class="bg-white rounded-xl shadow-sm p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-gray-500">Tasks</p>
+            <p class="text-2xl font-bold text-gray-900">0</p>
+          </div>
+          <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-sm p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-gray-500">Projects</p>
+            <p class="text-2xl font-bold text-gray-900">0</p>
+          </div>
+          <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+            <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-xl shadow-sm p-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-gray-500">Organizations</p>
+            <p class="text-2xl font-bold text-gray-900">0</p>
+          </div>
+          <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-xl shadow-sm p-6">
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">Recent Activity</h2>
+      <div class="text-center py-8 text-gray-500">
+        <p>No recent activity yet.</p>
+        <p class="text-sm mt-2">Start by creating a new task or project.</p>
+      </div>
+    </div>
+  </div>
+</main>
