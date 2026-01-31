@@ -82,7 +82,7 @@ group :development, :test do
   gem "faker", "~> 3.2"
   gem "capybara", "~> 3.39"
   gem "selenium-webdriver"
-  gem "shoulda-matchers", "~> 6.0"
+  gem "shoulda-matchers", "~> 7.0"
   gem "simplecov", require: false
   gem "database_cleaner-active_record"
 end
