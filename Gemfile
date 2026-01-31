@@ -47,7 +47,7 @@ gem "omniauth-rails_csrf_protection"
 gem "pundit", "~> 2.3"
 
 # Background jobs
-gem "sidekiq", "~> 7.2"
+gem "sidekiq", "~> 8.1"
 gem "redis", "~> 5.0"
 
 # Search
