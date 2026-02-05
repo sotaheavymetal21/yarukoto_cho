@@ -54,7 +54,7 @@ gem "redis", "~> 5.0"
 gem "ransack", "~> 4.1"
 
 # Pagination
-gem "pagy", "~> 8.0"
+gem "pagy", "~> 43.2"
 
 # Admin
 gem "activeadmin", "~> 3.2"
